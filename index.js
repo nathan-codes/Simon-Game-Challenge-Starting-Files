@@ -15,39 +15,105 @@ const greenCubeAudio = new Audio("/sounds/green.mp3");
 
 let randomNumber;
 let newPattern = [];
-const originalColors = ["red", "yellow", "blue", "green"];
+const originalColors = ["red", "blue", "yellow", "green"];
+let userSelectedColors = [];
 let count = 1;
 
 
-for (let i = 0; i <= 10; i++) {
-    randomNumber = Math.floor(Math.random() * 3);
-    newPattern.push(originalColors[randomNumber]);
+function newSequence() {
 
+    randomNumber = Math.floor(Math.random() * 4);
+    let randomColor = originalColors[randomNumber];
 
+    $("#" + randomColor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
+    switch (randomColor) {
+        case "red":
+            redCubeAudio.play();
+            break;
+        case "blue":
+            blueCubeAudio.play();
+            break;
+        case "yellow":
+            yellowCubeAudio.play();
+            break;
+        case "green":
+            greenCubeAudio.play();
+            break;
 
+        default:
+            break;
+    }
 
-
+    //Storing the new pattern 
+    newPattern.push(randomColor);
+    return newPattern;
 
 }
 
-console.log(newPattern);
+
+
+
+function userSequence() {
+    $(".btn").on("click", function (event) {
+        let clickedColor = event.target.id;
+        userSelectedColors.push(event.target.id);
+      
+    })
+
+    return userSelectedColors;
+}
+
+
+
+
+
 
 
 
 
 
 // Starting the Game based on Any key that is pressed.
-$(document).keypress(function ActionKey() {
+$(document).keypress(function () {
     $("h1").text("Level " + count);
+    newSequence();
+    
+})
+    
+
+
+$(".btn").on("click", function () {
+    userSequence();
+    console.log("User sequence is " + userSequence());
+
 
 })
+
+       
+    
+
+    
+
+
+
+
+
+
+
+
 
 
 
 
 
 // program to display a text using setTimeout method
+
+
+
+
+
+
+
 
 
 
@@ -86,4 +152,8 @@ greenCube.click(function () {
         greenCube.removeClass("pressed");
     }, 100)
 });
+
+
+
+
 
