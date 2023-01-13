@@ -13,9 +13,9 @@ const greenCubeAudio = new Audio("/sounds/green.mp3");
 
 
 
+const originalColors = ["red", "blue", "yellow", "green"];
 let randomNumber;
 let newPattern = [];
-const originalColors = ["red", "blue", "yellow", "green"];
 let userSelectedColors = [];
 let count = 1;
 
@@ -54,16 +54,18 @@ function newSequence() {
 
 
 
-function userSequence() {
     $(".btn").on("click", function (event) {
         let clickedColor = event.target.id;
         userSelectedColors.push(event.target.id);
       
     })
 
-    return userSelectedColors;
-}
 
+
+
+
+
+    
 
 
 
@@ -76,21 +78,26 @@ function userSequence() {
 // Starting the Game based on Any key that is pressed.
 $(document).keypress(function () {
     $("h1").text("Level " + count);
-    newSequence();
-    
-})
-    
-
-
-$(".btn").on("click", function () {
-    userSequence();
-    console.log("User sequence is " + userSequence());
+    console.log("Computer sequence is " + newSequence());
+    console.log("User sequence is " + userSelectedColors);
 
 
 })
+    
+
+
+// $(".btn").on("click", function () {
+
+
+   
+//     $("h1").text("Level " + count);
+//     count++; 
+
+
+// })
 
        
-    
+
 
     
 
