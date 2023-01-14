@@ -47,18 +47,13 @@ function newSequence() {
 
     //Storing the new pattern 
     newPattern.push(randomColor);
-    return newPattern;
+   
 
 }
 
 
 
 
-    $(".btn").on("click", function (event) {
-        let clickedColor = event.target.id;
-        userSelectedColors.push(event.target.id);
-      
-    })
 
 
 
@@ -78,25 +73,43 @@ function newSequence() {
 // Starting the Game based on Any key that is pressed.
 $(document).keypress(function () {
     $("h1").text("Level " + count);
-    console.log("Computer sequence is " + newSequence());
-    console.log("User sequence is " + userSelectedColors);
-
+    newSequence();
 
 })
     
+  
+    
+ 
 
+    $(".btn").on("click", function (event) {
+        let clickedColor = event.target.id;
+        userSelectedColors.push(event.target.id);
+    })
 
-// $(".btn").on("click", function () {
+   
+
+    // if (userSelectedColors[0] === newPattern[0]) {
+    //     count++;
+    //     $("h1").text("Same");
+    //     console.log("True");
+    // }
 
 
    
-//     $("h1").text("Level " + count);
-//     count++; 
+
+    
 
 
-// })
 
-       
+
+
+
+    
+
+
+
+
+
 
 
     
