@@ -110,6 +110,9 @@ function playSound(activeButton) {
         default:
             break;
     }
+    $("#" + activeButton).addClass("pressed");
+    setTimeout(function removeClicedAnimation() {
+        $("#" + activeButton).removeClass("pressed"); }, 100);
 }
 
 
