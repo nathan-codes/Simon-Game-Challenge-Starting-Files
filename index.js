@@ -41,6 +41,7 @@ function newSequence() {
 // Starting the Game based on Any key that is pressed.
 $(document).keypress(function () {
     $("h1").text("Level " + count);
+   
     newSequence();
     userClick();
     
@@ -127,6 +128,6 @@ function gameOver() {
     gameOverAudio.play();
 
     setTimeout(function () {
-        $("body").removeClass("red");}, 100);
-        
+    $("body").removeClass("red");}, 100);      
+
 }
