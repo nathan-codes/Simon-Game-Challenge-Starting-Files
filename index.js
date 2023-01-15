@@ -27,23 +27,7 @@ function newSequence() {
 
     $("#" + randomColor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
-    switch (randomColor) {
-        case "red":
-            redCubeAudio.play();
-            break;
-        case "blue":
-            blueCubeAudio.play();
-            break;
-        case "yellow":
-            yellowCubeAudio.play();
-            break;
-        case "green":
-            greenCubeAudio.play();
-            break;
-
-        default:
-            break;
-    }
+    playSound(randomColor);
 
     //Storing the new pattern 
     newPattern.push(randomColor);
@@ -96,36 +80,6 @@ $(document).keypress(function () {
 
 
    
-
-    
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 // program to display a text using setTimeout method
 
 
@@ -136,44 +90,32 @@ $(document).keypress(function () {
 
 
 
+function playSound(activeButton) {
 
-blueCube.click(function () {
-    blueCubeAudio.play();
-    blueCube.addClass("pressed");
-    setTimeout(function () {
-        blueCube.removeClass("pressed");
-    }, 100)
-});
+    switch (activeButton) {
+        case "red":
+            redCubeAudio.play();
 
+            break;
+        case "blue":
+            blueCubeAudio.play();
+            break;
+        case "yellow":
+            yellowCubeAudio.play();
+            break;
+        case "green":
+            greenCubeAudio.play();
+            break;
 
-yellowCube.click(function () {
-    yellowCubeAudio.play();
-    yellowCube.addClass("pressed");
-    setTimeout(function () {
-        yellowCube.removeClass("pressed");
-    }, 100)
-});
-
-
-
-redCube.click(function () {
-    redCubeAudio.play();
-    redCube.addClass("pressed");
-    setTimeout(function () {
-        redCube.removeClass("pressed");
-    }, 100)
-});
-
-
-greenCube.click(function () {
-    greenCubeAudio.play();
-    greenCube.addClass("pressed");
-    setTimeout(function () {
-        greenCube.removeClass("pressed");
-    }, 100)
-});
+        default:
+            break;
+    }
+}
 
 
 
+$(".btn").on("click", function (event) { 
+    playSound(event.target.id);
 
-
+ })
+ 
