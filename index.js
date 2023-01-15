@@ -5,12 +5,12 @@ const greenCube = $("#green");
 const redCube = $("#red");
 
 
-//Cube Audio
+//Game Audios
 const blueCubeAudio = new Audio("/sounds/blue.mp3");
 const redCubeAudio = new Audio("/sounds/red.mp3");
 const yellowCubeAudio = new Audio("/sounds/yellow.mp3");
 const greenCubeAudio = new Audio("/sounds/green.mp3");
-
+const gameOverAudio = new Audio("/sounds/wrong.mp3");
 
 
 const originalColors = ["red", "blue", "yellow", "green"];
@@ -31,24 +31,8 @@ function newSequence() {
 
     //Storing the new pattern 
     newPattern.push(randomColor);
-   
-
+    return newPattern;
 }
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
 
 
 
@@ -58,28 +42,40 @@ function newSequence() {
 $(document).keypress(function () {
     $("h1").text("Level " + count);
     newSequence();
+    userClick();
+    
+
+    if (userClick()[0] !== newSequence()[0]) {
+        $("body").css("background-color", "red");
+    }
 
 })
-    
-  
-    
- 
+
+
+
+
+// Get users Click choice
+function userClick() {
 
     $(".btn").on("click", function (event) {
         let clickedColor = event.target.id;
-        userSelectedColors.push(event.target.id);
+        userSelectedColors.push(event.target.id); 
     })
 
-   
-
-    // if (userSelectedColors[0] === newPattern[0]) {
-    //     count++;
-    //     $("h1").text("Same");
-    //     console.log("True");
-    // }
+    return userSelectedColors;
+}
 
 
-   
+
+
+// if (userSelectedColors[0] === newPattern[0]) {
+//     count++;
+//     $("h1").text("Same");
+//     console.log("True");
+// }
+
+
+
 // program to display a text using setTimeout method
 
 
@@ -112,13 +108,25 @@ function playSound(activeButton) {
     }
     $("#" + activeButton).addClass("pressed");
     setTimeout(function removeClicedAnimation() {
-        $("#" + activeButton).removeClass("pressed"); }, 100);
+        $("#" + activeButton).removeClass("pressed");
+    }, 100);
 }
 
 
 
-$(".btn").on("click", function (event) { 
+$(".btn").on("click", function (event) {
     playSound(event.target.id);
+})
 
- })
- 
+
+
+
+function gameOver() {
+
+    $("body").addClass("red");
+    gameOverAudio.play();
+
+    setTimeout(function () {
+        $("body").removeClass("red");}, 100);
+        
+}
