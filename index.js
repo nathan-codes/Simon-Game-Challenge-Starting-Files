@@ -6,11 +6,11 @@ const redCube = $("#red");
 
 
 //Game Audios
-const blueCubeAudio = new Audio("/sounds/blue.mp3");
-const redCubeAudio = new Audio("/sounds/red.mp3");
-const yellowCubeAudio = new Audio("/sounds/yellow.mp3");
-const greenCubeAudio = new Audio("/sounds/green.mp3");
-const gameOverAudio = new Audio("/sounds/wrong.mp3");
+const blueCubeAudio = new Audio("./sounds/blue.mp3");
+const redCubeAudio = new Audio("./sounds/red.mp3");
+const yellowCubeAudio = new Audio("./sounds/yellow.mp3");
+const greenCubeAudio = new Audio("./sounds/green.mp3");
+const gameOverAudio = new Audio("./sounds/wrong.mp3");
 
 
 const originalColors = ["red", "blue", "yellow", "green"];
@@ -30,6 +30,12 @@ $(document).keypress(function () {
     $("h1").text("Level " + level);
     newSequence();
 });
+
+$("#level-title2").on("click",function () {
+    $("h1").text("Level " + level);
+    newSequence();
+});
+ 
 
 
 $(".btn").on("click", function (event) {
@@ -146,6 +152,7 @@ function gameOver() {
     $("body").addClass("red");
     gameOverAudio.play();
     $("h1").text("Game Over, Press Any Key to Restart")
+    $("#level-title2").text("    Game Over!!!!  Level Reached:"+level+"  Tap to Restart")
 
     setTimeout(function () {
         $("body").removeClass("red");
@@ -157,4 +164,10 @@ function gameOver() {
     userSelectedColors = [];
     
 
+}
+
+
+
+if (window.innerWidth < 400) {
+    $('#level-title').text("Tap Background to start");
 }
