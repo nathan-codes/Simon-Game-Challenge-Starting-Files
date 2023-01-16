@@ -6,11 +6,11 @@ const redCube = $("#red");
 
 
 //Game Audios
-const blueCubeAudio = new Audio("/sounds/blue.mp3");
-const redCubeAudio = new Audio("/sounds/red.mp3");
-const yellowCubeAudio = new Audio("/sounds/yellow.mp3");
-const greenCubeAudio = new Audio("/sounds/green.mp3");
-const gameOverAudio = new Audio("/sounds/wrong.mp3");
+const blueCubeAudio = new Audio("./sounds/blue.mp3");
+const redCubeAudio = new Audio("./sounds/red.mp3");
+const yellowCubeAudio = new Audio("./sounds/yellow.mp3");
+const greenCubeAudio = new Audio("./sounds/green.mp3");
+const gameOverAudio = new Audio("./sounds/wrong.mp3");
 
 
 const originalColors = ["red", "blue", "yellow", "green"];
