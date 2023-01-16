@@ -159,7 +159,7 @@ function gameOver() {
     }, 100);
 
 
-    level = 0;
+    level = 0; 
     newPattern = [];
     userSelectedColors = [];
     
@@ -171,3 +171,6 @@ function gameOver() {
 if (window.innerWidth < 400) {
     $('#level-title').text("Tap Background to start");
 }
+
+
+// Final site 
