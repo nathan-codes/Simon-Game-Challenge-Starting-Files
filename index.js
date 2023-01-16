@@ -17,10 +17,69 @@ const originalColors = ["red", "blue", "yellow", "green"];
 let randomNumber;
 let newPattern = [];
 let userSelectedColors = [];
-let count = 1;
+let level = 0;
+
+
+
+
+
+
+
+// Starting the Game based on Any key that is pressed.
+$(document).keypress(function () {
+    $("h1").text("Level " + level);
+    newSequence();
+});
+
+
+$(".btn").on("click", function (event) {
+    let clickedColor = $(this).attr("id");
+    userSelectedColors.push(clickedColor);
+    playSound(clickedColor);
+    checkAnswer(userSelectedColors.length - 1);
+
+})
+
+
+
+
+function checkAnswer(currentlevel){
+
+    if ( newPattern[currentlevel] === userSelectedColors[currentlevel]) {
+        console.log("success");
+       
+    
+
+        if (userSelectedColors.length === newPattern.length) {
+
+            //5. Call nextSequence() after a 1000 millisecond delay.
+            setTimeout(function () {
+                newSequence();
+
+            }, 1000);
+
+        }
+       
+    }
+
+    else {
+        console.log("wrong");
+        gameOver();
+    }
+
+}
+
+
+
+
+
+
+
 
 
 function newSequence() {
+
+    userSelectedColors = [];
 
     randomNumber = Math.floor(Math.random() * 4);
     let randomColor = originalColors[randomNumber];
@@ -31,60 +90,14 @@ function newSequence() {
 
     //Storing the new pattern 
     newPattern.push(randomColor);
-    return newPattern;
+
+
+    //Increase level by 1 each time 
+    level++;
+    $("h1").text("Level " + level);
+   
+
 }
-
-
-
-
-
-// Starting the Game based on Any key that is pressed.
-$(document).keypress(function () {
-    $("h1").text("Level " + count);
-
-    newSequence();
-
-    $(".btn").on("click", function (event) {
-        let clickedColor = event.target.id;
-        userSelectedColors.push(clickedColor);
-
-
-        if (userSelectedColors[0] !== newSequence()[0]) {
-            gameOver();
-
-        }
-    })
-
-
-
-
-
-
-
-
-
-
-})
-
-
-
-
-// Get users Click choice
-
-
-
-
-// if (userSelectedColors[0] === newPattern[0]) {
-//     count++;
-//     $("h1").text("Same");
-//     console.log("True");
-// }
-
-
-
-// program to display a text using setTimeout method
-
-
 
 
 
@@ -97,16 +110,19 @@ function playSound(activeButton) {
     switch (activeButton) {
         case "red":
             redCubeAudio.play();
-
+        console.log("red active")
             break;
         case "blue":
-            blueCubeAudio.play();
+            blueCubeAudio.play(); 
+            console.log("blue active");
             break;
         case "yellow":
             yellowCubeAudio.play();
+            console.log("yellow active")
             break;
         case "green":
             greenCubeAudio.play();
+            console.log("green active")
             break;
 
         default:
@@ -120,9 +136,7 @@ function playSound(activeButton) {
 
 
 
-$(".btn").on("click", function (event) {
-    playSound(event.target.id);
-})
+
 
 
 
@@ -136,5 +150,11 @@ function gameOver() {
     setTimeout(function () {
         $("body").removeClass("red");
     }, 100);
+
+
+    level = 0;
+    newPattern = [];
+    userSelectedColors = [];
+    
 
 }
