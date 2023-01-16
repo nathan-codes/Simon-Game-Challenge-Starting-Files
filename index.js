@@ -41,14 +41,28 @@ function newSequence() {
 // Starting the Game based on Any key that is pressed.
 $(document).keypress(function () {
     $("h1").text("Level " + count);
-   
-    newSequence();
-    userClick();
-    
 
-    if (userClick()[0] !== newSequence()[0]) {
-        $("body").css("background-color", "red");
-    }
+    newSequence();
+
+    $(".btn").on("click", function (event) {
+        let clickedColor = event.target.id;
+        userSelectedColors.push(clickedColor);
+
+
+        if (userSelectedColors[0] !== newSequence()[0]) {
+            gameOver();
+
+        }
+    })
+
+
+
+
+
+
+
+
+
 
 })
 
@@ -56,15 +70,6 @@ $(document).keypress(function () {
 
 
 // Get users Click choice
-function userClick() {
-
-    $(".btn").on("click", function (event) {
-        let clickedColor = event.target.id;
-        userSelectedColors.push(event.target.id); 
-    })
-
-    return userSelectedColors;
-}
 
 
 
@@ -126,8 +131,10 @@ function gameOver() {
 
     $("body").addClass("red");
     gameOverAudio.play();
+    $("h1").text("Game Over, Press Any Key to Restart")
 
     setTimeout(function () {
-    $("body").removeClass("red");}, 100);      
+        $("body").removeClass("red");
+    }, 100);
 
 }
