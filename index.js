@@ -31,11 +31,11 @@ $(document).keypress(function () {
     newSequence();
 });
 
-$("#level-title2").on("click",function () {
+$("#level-title2").on("click", function () {
     $("h1").text("Level " + level);
     newSequence();
 });
- 
+
 
 
 $(".btn").on("click", function (event) {
@@ -49,12 +49,12 @@ $(".btn").on("click", function (event) {
 
 
 
-function checkAnswer(currentlevel){
+function checkAnswer(currentlevel) {
 
-    if ( newPattern[currentlevel] === userSelectedColors[currentlevel]) {
+    if (newPattern[currentlevel] === userSelectedColors[currentlevel]) {
         console.log("success");
-       
-    
+
+
 
         if (userSelectedColors.length === newPattern.length) {
 
@@ -65,7 +65,7 @@ function checkAnswer(currentlevel){
             }, 1000);
 
         }
-       
+
     }
 
     else {
@@ -101,7 +101,7 @@ function newSequence() {
     //Increase level by 1 each time 
     level++;
     $("h1").text("Level " + level);
-   
+
 
 }
 
@@ -116,10 +116,10 @@ function playSound(activeButton) {
     switch (activeButton) {
         case "red":
             redCubeAudio.play();
-        console.log("red active")
+            console.log("red active")
             break;
         case "blue":
-            blueCubeAudio.play(); 
+            blueCubeAudio.play();
             console.log("blue active");
             break;
         case "yellow":
@@ -152,17 +152,17 @@ function gameOver() {
     $("body").addClass("red");
     gameOverAudio.play();
     $("h1").text("Game Over, Press Any Key to Restart")
-    $("#level-title2").text("    Game Over!!!!  Level Reached:"+level+"  Tap to Restart")
+    $("#level-title2").text("   Game Over!!!!  Level Reached:" + level + "  Tap to Restart")
 
     setTimeout(function () {
         $("body").removeClass("red");
     }, 100);
 
 
-    level = 0; 
+    level = 0;
     newPattern = [];
     userSelectedColors = [];
-    
+
 
 }
 
